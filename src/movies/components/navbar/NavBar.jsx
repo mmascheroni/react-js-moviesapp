@@ -11,7 +11,6 @@ const NavBar = () => {
                 <ul className='flex items-center gap-5'>
                     <li>Inicio</li>
                     <li>Peliculas</li>
-                    <li>Series</li>
                     <li>Categorias</li>
                     <li>Trending</li>
                     <li>Mi lista</li>

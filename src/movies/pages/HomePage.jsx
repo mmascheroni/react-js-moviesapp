@@ -1,11 +1,18 @@
-import React from 'react'
-import Card from '../components/card/Card'
+import React, { useContext } from 'react'
+import GridCard from '../components/card/GridCard';
+import { MovieContext } from '../../context/MovieContext';
 
 const HomePage = () => {
+
+    const { trendsMovies } = useContext(MovieContext);
+
+    const pelicula = []
+
     return (
         <>
-            <Card />
-            
+            <GridCard movies={ trendsMovies } title='Trends Movies' />
+
+            <GridCard movies={ trendsMovies } title='Trends Movies' />
         </>
     )
 }
