@@ -9,11 +9,10 @@ const NavBar = () => {
             <nav className='flex items-center'>
                 <h1 className='ml-4 mr-5 font-bold text-xl'><Link to='/'>MoviesApp</Link></h1>
                 <ul className='flex items-center gap-5'>
-                    <li>Inicio</li>
                     <li>Peliculas</li>
                     <li>Series</li>
                     <li>Categorias</li>
-                    <li>Trending</li>
+                    <li>Tendencias</li>
                     <li>Mi lista</li>
                 </ul>
 

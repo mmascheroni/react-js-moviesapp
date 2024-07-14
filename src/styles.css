@@ -9,6 +9,7 @@
 
 body {
     background-color: #261858;
+    margin-bottom: 20px;
 }
 
 li {
@@ -22,4 +23,12 @@ a {
 
 .box-shadow {
     box-shadow: 0 5px 5px rgb(0, 0, 0, 0.2);
+}
+
+img {
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
 }
