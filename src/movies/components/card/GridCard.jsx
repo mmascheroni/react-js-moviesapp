@@ -47,7 +47,7 @@ const GridCard = ({ movies = [], title = ''}) => {
                         ref={scrollRef}
                     >
                         {movies?.map(movie => (
-                            <Card key={movie.id} src={`${BASE_URL_IMG}/${movie.backdrop_path}`} alt={movie.title} title={ movie.title } />
+                            <Card key={movie.id} id={movie.id} src={`${BASE_URL_IMG}/${movie.backdrop_path}`} alt={ movie.original_title} title={ movie.original_title } />
                         ))}
                     </div>
                     <button
