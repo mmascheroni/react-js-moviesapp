@@ -9,7 +9,12 @@
 
 body {
     background-color: #261858;
-    margin-bottom: 20px;
+}
+
+header,
+footer {
+    background-color: #2d1c6c;
+    color: #fff;
 }
 
 li {
@@ -23,6 +28,14 @@ a {
 
 .box-shadow {
     box-shadow: 0 5px 5px rgb(0, 0, 0, 0.2);
+}
+
+.box-shadow--poster {
+    box-shadow: 8px 9px 17px -6px rgba(0, 0, 0, 0.78);
+}
+
+.box-shadow--top {
+    box-shadow: 4px -7px 16px -1px rgba(0, 0, 0, 0.75);
 }
 
 img {

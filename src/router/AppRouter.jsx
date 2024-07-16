@@ -5,7 +5,7 @@ import MoviesRoutes from '../movies/routes/MoviesRoutes'
 const AppRouter = () => {
     return (
         <Routes>
-            <Route path='/' element={ <MoviesRoutes /> } />
+            <Route path='/*' element={ <MoviesRoutes /> } />
         </Routes>
     )
 }

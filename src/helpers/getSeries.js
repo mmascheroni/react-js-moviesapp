@@ -1,8 +1,7 @@
-export const getMoviesByGenre = async (genreId) => {
+export const getSeries = async (endpoint = '') => {
     const accessToken = import.meta.env.VITE_ACCESS_TOKEN;
     const url =
-        'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=es-ES&page=1&sort_by=popularity.desc&with_genres=' +
-        genreId;
+        'https://api.themoviedb.org/3/tv' + endpoint + '?language=es-ES';
 
     const options = {
         method: 'GET',
@@ -16,5 +15,12 @@ export const getMoviesByGenre = async (genreId) => {
 
     const data = await res.json();
 
-    return data.results;
+    const results = data.results;
+
+    const modifiedTitleKey = results.map((result) => ({
+        ...result,
+        original_title: result.name,
+    }));
+
+    return modifiedTitleKey;
 };
