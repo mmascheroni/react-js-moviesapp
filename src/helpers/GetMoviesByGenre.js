@@ -16,5 +16,7 @@ export const getMoviesByGenre = async (genreId) => {
 
     const data = await res.json();
 
-    return data.results;
+    const results = data.results;
+
+    return results;
 };

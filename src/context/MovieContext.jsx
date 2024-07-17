@@ -10,6 +10,7 @@ const init = () => {
     return JSON.parse(localStorage.getItem('myList')) || [];
 };
 
+
 const MovieProvider = ({ children }) => {
     
     // HOME PAGE
@@ -25,7 +26,6 @@ const MovieProvider = ({ children }) => {
 
     // My list
     const [myList, dispatch] = useReducer(listReducer, [], init);
-
 
 
     // Get TrendsMovies
@@ -108,19 +108,26 @@ const MovieProvider = ({ children }) => {
         dispatch(action);
     };
 
-    const onAddTitleToMyList = ({id, title, src}) => {
+    const onAddTitleToMyList = (props) => {
+        const { title, id, ...movieData } = props;
+
         const movie = {
+            ...movieData,
             id: id,
-            backdrop_path: src,
-            original_title: title
+            original_title: title,
         }
 
         handleAddToMyList(movie);
     }
 
-    const onDeleteTitleToMyList = ({id}) => {
+    const onDeleteTitleToMyList = (id) => {
         handleDeleteToMyList(id);
     }
+
+    const isTitleInMyList = (id) => {
+        return myList.some(movie => movie.id === id);
+    };
+    
 
 
     return (
@@ -134,7 +141,8 @@ const MovieProvider = ({ children }) => {
                     seriesTopRated,
                     myList,
                     onAddTitleToMyList,
-                    onDeleteTitleToMyList
+                    onDeleteTitleToMyList,
+                    isTitleInMyList
                 }
             }
         >
