@@ -44,7 +44,7 @@ const MovieProvider = ({ children }) => {
 
     const getTrendsMovies = async (page) => {
         setIsLoading(true);
-        const data = await getMoviesOrSeries(endpointTrendsMovies, page);
+        const data = await getMoviesOrSeries('', endpointTrendsMovies, page);
         setTrendsMovies(prevMovies => {
             const newMovies = data.filter(movie => !prevMovies.some(prevMovie => prevMovie.id === movie.id));
             return [...prevMovies, ...newMovies];
@@ -144,6 +144,27 @@ const MovieProvider = ({ children }) => {
     }, []);
 
 
+    const getTrendsMoviesAndSetMovies = async (page) => {
+        setIsLoading(true);
+        const data = await getMoviesOrSeries('', endpointTrendsMovies, page);
+        setMovies(prevMovies => {
+            const newMovies = data.filter(movie => !prevMovies.some(prevMovie => prevMovie.id === movie.id));
+            return [...prevMovies, ...newMovies];
+        });
+        setIsLoading(false);
+    }
+
+    const getRecommendationsMoviesAndSetMovies = async (page) => {
+        setIsLoading(true);
+        const data = await getMoviesOrSeries(endpointMovie, endpointRecommendationsMovies, page);
+        setMovies(prevMovies => {
+            const newMovies = data.filter(movie => !prevMovies.some(prevMovie => prevMovie.id === movie.id));
+            return [...prevMovies, ...newMovies];
+        });
+        setIsLoading(false);
+    }
+
+
     const getMoviesByGenre = async (genreId, page) => {
         setIsLoading(true);
         const data = await getMoviesOrSeriesByGenre(endpointMovie, genreId, page);
@@ -222,6 +243,7 @@ const MovieProvider = ({ children }) => {
                     categoriesMovies,
                     categoriesSeries,
                     trendsMovies,
+                    getTrendsMovies,
                     recommendationsMovies,
                     getRecommendationsMovies,
                     misteryRecommendations,
@@ -239,6 +261,8 @@ const MovieProvider = ({ children }) => {
                     getMoviesByGenre,
                     movies,
                     setMovies,
+                    getTrendsMoviesAndSetMovies,
+                    getRecommendationsMoviesAndSetMovies
                 }
             }
         >

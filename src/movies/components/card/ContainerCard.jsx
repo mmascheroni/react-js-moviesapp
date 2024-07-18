@@ -2,17 +2,34 @@ import React, { useContext, useEffect, useState } from 'react'
 import { MovieContext } from '../../../context/MovieContext';
 import SpinnerLoader from '../spinnerLoader/SpinnerLoader';
 
-const ContainerCard = ({title, handleClick, genreId, showBtn = true, children }) => {
+const ContainerCard = ({title, number, genreId, showBtn = true, children }) => {
 
-    const { isLoading } = useContext(MovieContext);
+
+    const { isLoading, getMoviesByGenre, getTrendsMoviesAndSetMovies, getRecommendationsMoviesAndSetMovies, getSeriesByGenre } = useContext(MovieContext);
 
     const [ page, setPage ] = useState(2);
 
 
     const addPageToRequest = () => {
-        handleClick(genreId, page);
-        setPage(page + 1);
+        if ( number == 0) {
+            getMoviesByGenre(genreId, page);
+            setPage(page + 1);
+        }
         
+        if ( number == 1 ) {
+            getTrendsMoviesAndSetMovies(page);
+            setPage(page + 1);
+        }
+
+        if ( number == 2 ) {
+            getRecommendationsMoviesAndSetMovies(page);
+            setPage(page + 1);
+        }
+        
+        if ( number == 4 ) {
+            getSeriesByGenre(genreId, page);
+            setPage(page + 1);
+        }
     }
 
     useEffect(() => {

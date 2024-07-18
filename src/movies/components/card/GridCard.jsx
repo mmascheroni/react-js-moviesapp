@@ -29,10 +29,9 @@ const GridCard = ({ movies = [], title = '', linkTo = '/', genreId, type, titleP
                         <Link to={ linkTo } state={
                                 {
                                     movies: movies,
-                                    titlePage: titlePage,
                                     genreId: genreId,
-                                    type: type,
-                                    endpoint: endpoint,
+                                    titlePage: titlePage,
+                                    endpoint: endpoint
                                 }
                                 }
                             >
