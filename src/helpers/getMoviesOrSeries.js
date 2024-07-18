@@ -1,6 +1,14 @@
-export const getSeriesByGenre = async (genreId, page = 1) => {
+export const getMoviesOrSeries = async (
+    endpointType = '',
+    endpoint = '',
+    page = 1
+) => {
     const accessToken = import.meta.env.VITE_ACCESS_TOKEN;
-    const url = `https://api.themoviedb.org/3/discover/tv?language=es-ES&page=${page}&sort_by=popularity.desc&with_genres=${genreId}`;
+    const baseURL = import.meta.env.VITE_BASE_URL;
+    const paramLanguage = import.meta.env.VITE_QUERY_PARAM_LANGUAGE;
+    const paramPage = import.meta.env.VITE_QUERY_PARAM_PAGE;
+
+    const url = `${baseURL}${endpointType}${endpoint}${paramLanguage}${paramPage}${page}`;
 
     const options = {
         method: 'GET',

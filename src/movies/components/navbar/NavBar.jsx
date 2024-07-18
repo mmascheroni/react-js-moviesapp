@@ -30,7 +30,7 @@ const NavBar = memo(() => {
                 <h1 className='ml-4 mr-5 font-bold text-xl'><Link to='/'>MoviesApp</Link></h1>
                 <div className='flex items-center gap-1'>
                     <li className="relative group">
-                        <Link to="#" className="px-4 py-2 menu hover:bg-indigo-700 rounded cursor-pointer hover:opactity-80">Peliculas</Link>
+                        <ul className="px-4 py-2 menu hover:bg-indigo-700 rounded cursor-pointer hover:opactity-80 cursor-pointer">Peliculas</ul>
                         <ul className="absolute lf-5 hidden mt-2 w-48 bg-indigo-900 text-white rounded-lg shadow-lg group-hover:block max-h-64 overflow-y-auto scrollbar">
                             {
                                 categoriesMovies?.map((category) => (
@@ -41,7 +41,7 @@ const NavBar = memo(() => {
                         </ul>
                     </li>
                     <li className="relative group">
-                        <Link to="#" className="px-4 py-2 menu hover:bg-indigo-700 rounded">Series</Link>
+                        <ul className="px-4 py-2 menu hover:bg-indigo-700 rounded cursor-pointer">Series</ul>
                         <ul className="absolute lf-5 hidden mt-2 w-48 bg-indigo-900 text-white rounded-lg shadow-lg group-hover:block max-h-64 overflow-y-auto scrollbar">
                             {
                                 categoriesSeries?.map((category) => (
