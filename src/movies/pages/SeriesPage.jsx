@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom';
 import { MovieContext } from '../../context/MovieContext';
 import ContainerCard from '../components/card/ContainerCard';
@@ -12,14 +12,20 @@ const SeriesPage = () => {
     const BASE_URL_IMG = 'https://image.tmdb.org/t/p/w300';
     const { genreId } = useParams();
 
+    const [ number, setNumber ] = useState(null);
+
     useEffect(() => {
-        setSeries([]); 
-        getSeriesByGenre(genreId);
+
+        if ( categoryName.length > 0 ) {
+            setSeries([]); 
+            getSeriesByGenre(genreId);
+            setNumber(4);
+        }
     }, [genreId]);
 
 
     return (
-        <ContainerCard movies={ series } handleClick={ getSeriesByGenre } genreId={ genreId } title={ `Series: ${categoryName}` }>
+        <ContainerCard movies={ series } number={ number } genreId={ genreId } title={ `Series: ${categoryName}` }>
             {
                 series?.map(serie => (
                     <Card 
