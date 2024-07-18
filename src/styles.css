@@ -93,3 +93,29 @@ button {
     visibility: visible;
     opacity: 1;
 }
+
+.lf-5 {
+    left: -25%;
+}
+
+.menu::before {
+    visibility: hidden;
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #000 transparent transparent transparent;
+}
+
+.group:hover .menu::before {
+    visibility: visible;
+    opacity: 1;
+}
+
+.scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #3d2dcf #252525;
+}

@@ -13,15 +13,15 @@ const TitlePage = () => {
 
 
     return (
-        <div className="mt-8 mb-8 flex items-center justify-center">
-            <button className='flex self-start justify-content ml-auto'>
+        <div className="mt-8 mb-8 flex items-center">
+            <div className='flex gap-5 bg-indigo-900 rounded-md p-5 max-w-4xl mx-auto box-shadow'>
+                <button className='flex self-start pl-5'>
                 <Link to="/">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="white" className="size-8">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                 </Link>
             </button>
-            <div className='flex gap-5 bg-indigo-900 rounded-md p-5 max-w-3xl mx-auto box-shadow'>
                 <img className='rounded-lg box-shadow--poster' src={`${BASE_URL_IMG}/${movie.poster_path}`} alt={movie.alt} />
                 <div className='flex flex-col justify-evenly gap-2 text-white'>
                     <h2 className='text-xl text-white font-bold text-center'>{movie.title}</h2>

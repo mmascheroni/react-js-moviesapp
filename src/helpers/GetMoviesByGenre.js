@@ -1,8 +1,10 @@
-export const getMoviesByGenre = async (genreId) => {
+export const getMoviesByGenre = async (genreId, page = 1) => {
     const accessToken = import.meta.env.VITE_ACCESS_TOKEN;
     const url =
-        'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=es-ES&page=1&sort_by=popularity.desc&with_genres=' +
-        genreId;
+        'https://api.themoviedb.org/3/discover/movie?language=es-ES&sort_by=popularity.desc&with_genres=' +
+        genreId +
+        '&page=' +
+        page;
 
     const options = {
         method: 'GET',

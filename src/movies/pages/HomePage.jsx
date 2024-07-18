@@ -10,7 +10,7 @@ const HomePage = () => {
 
     return (
         <>
-            <GridCard movies={ trendsMovies } title='Tendencias' />
+            <GridCard movies={ trendsMovies } title='Tendencias' linkTo="browse/trending" endpoint='/trending/movie/day' titlePage="Peliculas: Tendencias" />
 
             <GridCard movies={ myList } title='Mi lista' />
 
@@ -18,7 +18,7 @@ const HomePage = () => {
 
             <GridCard movies={ recommendationsSeries } title='Series populares' />
 
-            <GridCard movies={ misteryRecommendations } title='Peliculas de misterio aclamadas por la crítica' />
+            <GridCard movies={ misteryRecommendations } title='Peliculas de misterio aclamadas por la crítica' linkTo='/browse/all/9648' titlePage="Peliculas: Misterio" type="movie" genreId='9648' />
 
             <GridCard movies={ seriesTopRated } title='Top ranking de series' />
         </>

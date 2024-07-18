@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Search from '../search/Search'
+import { MovieContext } from '../../../context/MovieContext';
 
-const NavBar = () => {
+const NavBar = memo(() => {
     const [ scrolled, setScrolled ] = useState(false);
+
+    const { categoriesMovies, categoriesSeries } = useContext(MovieContext);
 
     const handleScroll = () => {
         const offset = window.scrollY;
@@ -25,12 +28,31 @@ const NavBar = () => {
         <header className={`pt-5 pb-5 box-shadow sticky top-0 left-0 z-10 ${scrolled ? 'opacity-80' : 'opacity-100'} hover:opacity-100`}>
             <nav className='flex items-center'>
                 <h1 className='ml-4 mr-5 font-bold text-xl'><Link to='/'>MoviesApp</Link></h1>
-                <ul className='flex items-center gap-5'>
-                    <li>Peliculas</li>
-                    <li>Series</li>
-                    <li>Categorias</li>
-                    <li>Mi lista</li>
-                </ul>
+                <div className='flex items-center gap-1'>
+                    <li className="relative group">
+                        <Link to="#" className="px-4 py-2 menu hover:bg-indigo-700 rounded cursor-pointer hover:opactity-80">Peliculas</Link>
+                        <ul className="absolute lf-5 hidden mt-2 w-48 bg-indigo-900 text-white rounded-lg shadow-lg group-hover:block max-h-64 overflow-y-auto scrollbar">
+                            {
+                                categoriesMovies?.map((category) => (
+                                    <Link key={category.id} id={category.id} to={`/browse/movies/${category.id}`}  state={{ name: category.name }}><li className="px-4 py-2 hover:bg-indigo-700 hover:opacity-85">{ category.name }</li></Link>
+                                ))
+                            }
+                            
+                        </ul>
+                    </li>
+                    <li className="relative group">
+                        <Link to="#" className="px-4 py-2 menu hover:bg-indigo-700 rounded">Series</Link>
+                        <ul className="absolute lf-5 hidden mt-2 w-48 bg-indigo-900 text-white rounded-lg shadow-lg group-hover:block max-h-64 overflow-y-auto scrollbar">
+                            {
+                                categoriesSeries?.map((category) => (
+                                    <Link key={category.id} id={category.id} to={`/browse/series/${category.id}`} state={{ name: category.name }}><li className="px-4 py-2  hover:bg-indigo-700 hover:opacity-85">{ category.name }</li></Link>
+                                ))
+                            }
+                            
+                        </ul>
+                    </li>
+                    <Link to='/browse/mylist' className='px-4 py-2  hover:bg-indigo-700 rounded-md'><li className='hover:opacity-85'>Mi lista</li></Link>
+                </div>
 
                 <div className='ml-auto mr-5 flex justify-end items-center gap-5'>
                     <Search />
@@ -45,7 +67,7 @@ const NavBar = () => {
             </nav>
         </header>
     )
-}
+});
 
 
 export default NavBar
