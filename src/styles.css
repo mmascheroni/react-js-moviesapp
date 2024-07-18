@@ -17,6 +17,16 @@ footer {
     color: #fff;
 }
 
+svg {
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+svg:hover {
+    transform: scale(1.1);
+    opacity: 80%;
+}
+
 li {
     list-style: none;
 }
@@ -44,4 +54,68 @@ img {
 
 button {
     cursor: pointer;
+}
+
+.tooltip-btn {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-btn .tooltip-text {
+    visibility: hidden;
+    width: 150px;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-btn .tooltip-text:before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #000 transparent transparent transparent;
+}
+
+.tooltip-btn:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.lf-5 {
+    left: -25%;
+}
+
+.menu::before {
+    visibility: hidden;
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #000 transparent transparent transparent;
+}
+
+.group:hover .menu::before {
+    visibility: visible;
+    opacity: 1;
+}
+
+.scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #3d2dcf #252525;
 }

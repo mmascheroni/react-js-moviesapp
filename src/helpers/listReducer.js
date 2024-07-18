@@ -4,6 +4,7 @@ const listReducer = (initialState = [], action) => {
             if (!initialState.some((e) => e.id == action.payload.id)) {
                 return [...initialState, action.payload];
             }
+            break;
 
         case 'delete':
             return initialState.filter((title) => title.id != action.payload);

@@ -1,6 +1,6 @@
 export const getGenres = async (endpoint) => {
     const accessToken = import.meta.env.VITE_ACCESS_TOKEN;
-    const url = 'https://api.themoviedb.org/3' + endpoint;
+    const url = 'https://api.themoviedb.org/3' + endpoint + '?language=es-ES';
 
     const options = {
         method: 'GET',
