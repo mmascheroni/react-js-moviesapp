@@ -1,9 +1,6 @@
 import { createContext, useEffect, useReducer, useState } from "react";
-import { getMovies } from "../helpers/getMovies";
-import { getMoviesByGenre } from "../helpers/GetMoviesByGenre";
-import { getSeries } from "../helpers/getSeries";
 import listReducer from "../helpers/listReducer";
-import { getGenres } from "../helpers/getGenres";
+import { getGenres, getMoviesOrSeries, getMoviesOrSeriesByGenre } from "../helpers";
 
 export const MovieContext = createContext();
 
@@ -13,6 +10,12 @@ const init = () => {
 
 
 const MovieProvider = ({ children }) => {
+    const endpointMovie = import.meta.env.VITE_ENDPOINT_MOVIE;
+    const endpointSerie = import.meta.env.VITE_ENDPOINT_SERIE;
+    const endpointTrendsMovies = import.meta.env.VITE_ENDPOINT_TRENDS_MOVIES;
+    const endpointRecommendationsMovies = import.meta.env.VITE_ENDPOINT_RECOMMENDATIONS_MOVIES;
+    const endpointPopularSeries = import.meta.env.VITE_ENDPOINT_TOP_SERIES;
+    const endpointRatedSeries = import.meta.env.VITE_ENDPOINT_RATED_SERIES;
 
     const [ isLoading, setIsLoading ] = useState(false);
     
@@ -33,19 +36,87 @@ const MovieProvider = ({ children }) => {
 
     const [ movies, setMovies ] = useState([]);
 
-    // My list
+    const [ series, setSeries ] = useState([]);
+
     const [myList, dispatch] = useReducer(listReducer, [], init);
 
-    const getMoviesByGenreId = async (id, page = 1) => {
+
+
+    const getTrendsMovies = async (page) => {
         setIsLoading(true);
-        const data = await getMoviesByGenre(id, page);
-        setMovies(prevMovies => {
+        const data = await getMoviesOrSeries(endpointTrendsMovies, page);
+        setTrendsMovies(prevMovies => {
+            const newMovies = data.filter(movie => !prevMovies.some(prevMovie => prevMovie.id === movie.id));
+            return [...prevMovies, ...newMovies];
+        });
+        setIsLoading(false);
+    }
+
+    useEffect(() => {
+        getTrendsMovies();
+    }, []);
+
+
+    const getRecommendationsMovies = async (page) => {
+        setIsLoading(true);
+        const data = await getMoviesOrSeries(endpointMovie, endpointRecommendationsMovies, page);
+        setRecommendationsMovies(prevMovies => {
+            const newMovies = data.filter(movie => !prevMovies.some(prevMovie => prevMovie.id === movie.id));
+            return [...prevMovies, ...newMovies];
+        });
+        setIsLoading(false);
+    }
+
+    useEffect(() => {
+        getRecommendationsMovies();
+    }, []);
+
+
+    const getRecommendationsSeries = async (page) => {
+        setIsLoading(true);
+        const data = await getMoviesOrSeries(endpointSerie, endpointPopularSeries, page);
+        setRecommendationsSeries(prevSeries => {
+            const newSeries = data.filter(serie => !prevSeries.some(prevSerie => prevSerie.id === serie.id));
+            return [...prevSeries, ...newSeries];
+        });
+        setIsLoading(false);
+    }
+
+    useEffect(() => {
+        getRecommendationsSeries();
+    }, []);
+
+
+    const getTopRatedSeries = async (page) => {
+        setIsLoading(true);
+        const data = await getMoviesOrSeries(endpointSerie, endpointRatedSeries, page);
+        setSeriesTopRated(prevSeries => {
+            const newSeries = data.filter(serie => !prevSeries.some(prevSerie => prevSerie.id === serie.id));
+            return [...prevSeries, ...newSeries];
+        });
+        setIsLoading(false);
+    }
+
+    useEffect(() => {
+        getTopRatedSeries();
+    }, []);
+
+
+    const getMisteryRecommendations = async (page = 1) => {
+        setIsLoading(true);
+        const data = await getMoviesOrSeriesByGenre(endpointMovie, 9648, page);
+        setMisteryRecommendations(prevMovies => {
             const newMovies = data.filter(movie => !prevMovies.some(prevMovie => 
                 prevMovie.id === movie.id));
             return [...prevMovies, ...newMovies];
         });
         setIsLoading(false);
     }
+
+    useEffect(() => {
+        getMisteryRecommendations();
+    }, []);
+
 
     // Categories Movies
 
@@ -73,71 +144,28 @@ const MovieProvider = ({ children }) => {
     }, []);
 
 
-    // Get TrendsMovies
-    const getTrendsMovies = async (page = 1) => {
+    const getMoviesByGenre = async (genreId, page) => {
         setIsLoading(true);
-        const data = await getMovies('/trending/movie/day', page);
-        setTrendsMovies(prevMovies => {
-            const newMovies = data.filter(movie => !prevMovies.some(prevMovie => prevMovie.id === movie.id));
-            return [...prevMovies, ...newMovies];
-        });
-
-        setIsLoading(false);
-    }
-
-    useEffect(() => {
-        getTrendsMovies();
-    }, []);
-
-    // Get Recommendations Movies
-    const getRecommendationsMovies = async () => {
-        const data = await getMovies('/movie/now_playing');
-        setRecommendationsMovies(data);
-    }
-
-    useEffect(() => {
-        getRecommendationsMovies();
-    }, []);
-
-    // Get Recommendations Series
-    const getRecommendationsSeries = async () => {
-        const data = await getSeries('/popular');
-        setRecommendationsSeries(data);
-    }
-
-    useEffect(() => {
-        getRecommendationsSeries();
-    }, []);
-
-    // Get Recommendations Series
-    const getTopSeriesRated = async () => {
-        const data = await getSeries('/top_rated');
-        setSeriesTopRated(data);
-    }
-
-    useEffect(() => {
-        getTopSeriesRated();
-    }, []);
-
-
-    // Get Mistery Movies Recommendations
-
-    const getMisteryRecommendations = async (page) => {
-        // id 9648== misterio
-        setIsLoading(true);
-        const data = await getMoviesByGenre(9648);
-        setMisteryRecommendations(prevMovies => {
-            const newMovies = data.filter(movie => !prevMovies.some(prevMovie => prevMovie.id === movie.id));
+        const data = await getMoviesOrSeriesByGenre(endpointMovie, genreId, page);
+        setMovies(prevMovies => {
+            const newMovies = data.filter(movie => !prevMovies.some(prevMovie => 
+                prevMovie.id === movie.id));
             return [...prevMovies, ...newMovies];
         });
         setIsLoading(false);
     }
 
 
-    useEffect(() => {
-        getMisteryRecommendations();
-    }, []);
-
+    const getSeriesByGenre = async (genreId, page) => {
+        setIsLoading(true);
+        const data = await getMoviesOrSeriesByGenre(endpointSerie, genreId, page);
+        setSeries(prevSeries => {
+            const newSeries = data.filter(serie => !prevSeries.some(prevSerie => 
+                prevSerie.id === serie.id));
+            return [...prevSeries, ...newSeries];
+        });
+        setIsLoading(false);
+    }
 
 
     // MY LIST
@@ -191,13 +219,9 @@ const MovieProvider = ({ children }) => {
             value={
                 { 
                     isLoading,
-                    setIsLoading,
                     categoriesMovies,
                     categoriesSeries,
-                    movies,
-                    getMoviesByGenreId,
                     trendsMovies,
-                    getTrendsMovies,
                     recommendationsMovies,
                     getRecommendationsMovies,
                     misteryRecommendations,
@@ -208,7 +232,13 @@ const MovieProvider = ({ children }) => {
                     myList,
                     onAddTitleToMyList,
                     onDeleteTitleToMyList,
-                    isTitleInMyList
+                    isTitleInMyList,
+                    getSeriesByGenre,
+                    series,
+                    setSeries,
+                    getMoviesByGenre,
+                    movies,
+                    setMovies,
                 }
             }
         >
