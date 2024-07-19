@@ -1,6 +1,7 @@
 import { createContext, useEffect, useReducer, useState } from "react";
 import listReducer from "../helpers/listReducer";
 import { getGenres, getMoviesOrSeries, getMoviesOrSeriesByGenre } from "../helpers";
+import { getSearchMoviesAndSeries } from "../helpers/getSearchMoviesAndSeries";
 
 export const MovieContext = createContext();
 
@@ -38,9 +39,13 @@ const MovieProvider = ({ children }) => {
 
     const [ series, setSeries ] = useState([]);
 
+    const [ inputValue, setInputValue ] = useState('');
+
+    const [ search, setSearch ] = useState('');
+
+    const [ moviesSeriesSearch, setMoviesSeriesSearch ] = useState([]);
+
     const [myList, dispatch] = useReducer(listReducer, [], init);
-
-
 
     const getTrendsMovies = async (page) => {
         setIsLoading(true);
@@ -188,6 +193,24 @@ const MovieProvider = ({ children }) => {
         setIsLoading(false);
     }
 
+    // SEARCH
+
+    const handleChangeInput = (e) => {
+        setInputValue(e.target.value);
+    }
+
+    const onSearchTitle = async (query = '', page = 1) => {
+        setSearch(inputValue);
+        setIsLoading(true);
+        const data = await getSearchMoviesAndSeries(query, page);
+        setMoviesSeriesSearch(prevMoviesSeries => {
+            const newMoviesSeries = data.filter(movieSerie => !prevMoviesSeries.some(prevMovieSerie => 
+                prevMovieSerie.id === movieSerie.id));
+            return [...prevMoviesSeries, ...newMoviesSeries];
+        });
+        setIsLoading(false);
+    }
+
 
     // MY LIST
     useEffect(() => {
@@ -262,7 +285,16 @@ const MovieProvider = ({ children }) => {
                     movies,
                     setMovies,
                     getTrendsMoviesAndSetMovies,
-                    getRecommendationsMoviesAndSetMovies
+                    getRecommendationsMoviesAndSetMovies,
+                    moviesSeriesSearch,
+                    setMoviesSeriesSearch,
+                    search,
+                    setSearch,
+                    inputValue,
+                    setSearch,
+                    setInputValue,
+                    handleChangeInput,
+                    onSearchTitle
                 }
             }
         >
