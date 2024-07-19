@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom';
-import { MovieContext } from '../../context/MovieContext';
+import { MovieContext } from '../context/MovieContext';
 import ContainerCard from '../components/card/ContainerCard';
 import Card from '../components/card/Card';
 

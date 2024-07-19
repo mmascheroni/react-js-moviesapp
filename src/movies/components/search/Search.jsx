@@ -1,12 +1,10 @@
 import React, { useContext } from 'react'
-import { MovieContext } from '../../../context/MovieContext'
+import { MovieContext } from '../../context/MovieContext'
 import { Link } from 'react-router-dom';
 
 const Search = () => {
 
     const { inputValue, handleChangeInput, onSearchTitle } = useContext(MovieContext);
-
-    
 
     return (
         <form className='flex gap-2 justify-center'>

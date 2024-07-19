@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import GridCard from '../components/card/GridCard';
-import { MovieContext } from '../../context/MovieContext';
+import { MovieContext } from '../context/MovieContext';
+
 
 const HomePage = () => {
 
