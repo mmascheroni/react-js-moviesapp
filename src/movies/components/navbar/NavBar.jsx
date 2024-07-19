@@ -1,7 +1,7 @@
 import React, { memo, useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Search from '../search/Search'
-import { MovieContext } from '../../../context/MovieContext';
+import { MovieContext } from '../../context/MovieContext';
 import { AuthContext } from '../../../auth/context/AuthContext';
 
 const NavBar = memo(() => {
@@ -78,7 +78,7 @@ const NavBar = memo(() => {
                         { user?.name }
                     </p>
                     <button className='flex items-center gap-1 user-name' onClick={  onLogout }> Cerrar Sesión
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="white" className="size-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="white" className="size-7">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
                         </svg>
 

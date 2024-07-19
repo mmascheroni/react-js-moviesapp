@@ -8,9 +8,9 @@ function MoviesApp() {
   return (
     <ErrorBoundary>
       <AuthProvider>
-      <AppRouter />
-      <Footer/>
-    </AuthProvider>
+        <AppRouter />
+        <Footer/>
+      </AuthProvider>
     </ErrorBoundary>
   )
 }

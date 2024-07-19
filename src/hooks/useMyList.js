@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { MovieContext } from '../context/MovieContext';
+import { MovieContext } from '../movies/context/MovieContext';
 
 export const useMyList = (id) => {
     const {

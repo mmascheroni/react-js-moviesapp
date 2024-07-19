@@ -1,7 +1,7 @@
 import { createContext, useEffect, useReducer, useState } from "react";
-import listReducer from "../helpers/listReducer";
-import { getGenres, getMoviesOrSeries, getMoviesOrSeriesByGenre } from "../helpers";
-import { getSearchMoviesAndSeries } from "../helpers/getSearchMoviesAndSeries";
+import listReducer from "../../helpers/listReducer";
+import { getGenres, getMoviesOrSeries, getMoviesOrSeriesByGenre } from "../../helpers";
+import { getSearchMoviesAndSeries } from "../../helpers/getSearchMoviesAndSeries";
 
 export const MovieContext = createContext();
 

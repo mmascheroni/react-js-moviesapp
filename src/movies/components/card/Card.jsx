@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import ButtonMylist from '../button/ButtonMylist';
 import { Link } from 'react-router-dom';
 import { useMyList } from '../../../hooks/useMyList';
-import { MovieContext } from '../../../context/MovieContext';
 
 
 const Card = (props) => {

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { MovieContext } from '../../../context/MovieContext';
 import SpinnerLoader from '../spinnerLoader/SpinnerLoader';
+import { MovieContext } from '../../context/MovieContext';
 
 const ContainerCard = ({title, query, number, genreId, showBtn = true, children }) => {
 
