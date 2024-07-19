@@ -16,7 +16,7 @@ const SearchPage = () => {
     const { inputValue, setInputValue, search, setSearch, moviesSeriesSearch, setMoviesSeriesSearch, onSearchTitle } = useContext(MovieContext);
 
     // Number -> prop to ContainerCard, this number indicate the function what ContainerCard should to called and adding a page en each called
-    const [ number, setNumber ] = useState(6);
+    const [ number, setNumber ] = useState(8);
 
 
     useEffect(() => {
@@ -39,7 +39,12 @@ const SearchPage = () => {
                     <Card
                         key={movie.id}  
                         id={movie.id} 
-                        src={`${BASE_URL_IMG}/${movie.backdrop_path}`} 
+                        src={
+                            movie.backdrop_path ?
+                            `${BASE_URL_IMG}/${movie.backdrop_path}`
+                            :
+                            '/assets/no-photo.jpg'
+                        } 
                         alt={ movie.original_title} 
                         title={ movie.original_title } 
                         {...movie}

@@ -22,7 +22,16 @@ const TitlePage = () => {
                     </svg>
                 </Link>
             </button>
-                <img className='rounded-lg box-shadow--poster' src={`${BASE_URL_IMG}/${movie.poster_path}`} alt={movie.alt} />
+                <img 
+                    className='rounded-lg box-shadow--poster w-300 h-600' 
+                    src={
+                        movie.poster_path ?
+                        `${BASE_URL_IMG}/${movie.poster_path}`
+                        :
+                        '/assets/no-photo.jpg'
+                    } 
+                    alt={movie.alt} 
+                />
                 <div className='flex flex-col justify-evenly gap-2 text-white'>
                     <h2 className='text-xl text-white font-bold text-center'>{movie.title}</h2>
                     <div className='flex flex-col gap-2'>

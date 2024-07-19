@@ -119,3 +119,15 @@ button {
     scrollbar-width: thin;
     scrollbar-color: #3d2dcf #252525;
 }
+
+.h-160 {
+    height: 160px;
+}
+
+.w-300 {
+    max-width: 300px;
+}
+
+.h-600 {
+    max-height: 420px;
+}

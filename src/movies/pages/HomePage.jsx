@@ -16,11 +16,11 @@ const HomePage = () => {
 
             <GridCard movies={ recommendationsMovies } title='Creemos que estos te encatarán' linkTo='browse/movies/recommendations' endpoint='/now_playing' titlePage='Recomendadas' />
 
-            <GridCard movies={ recommendationsSeries } title='Series populares' />
+            <GridCard movies={ recommendationsSeries } title='Series populares' linkTo='browse/series/populares' endpoint='/popular' titlePage='Populares' />
 
             <GridCard movies={ misteryRecommendations } title='Peliculas de misterio aclamadas por la crítica' linkTo='/browse/movies/9648' genreId='9648' titlePage='Misterio' />
 
-            <GridCard movies={ seriesTopRated } title='Top ranking de series' />
+            <GridCard movies={ seriesTopRated } title='Top ranking de series' linkTo='browse/series/top-rated' endpoint='/top-rated' titlePage='Top Ranking' />
         </>
     )
 }
