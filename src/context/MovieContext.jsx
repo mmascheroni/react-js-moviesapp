@@ -19,6 +19,8 @@ const MovieProvider = ({ children }) => {
     const endpointRatedSeries = import.meta.env.VITE_ENDPOINT_RATED_SERIES;
 
     const [ isLoading, setIsLoading ] = useState(false);
+
+    const [ isLoadingCard, setIsLoadingCard ] = useState(false);
     
     // HOME PAGE
     const [trendsMovies, setTrendsMovies] = useState([]);
@@ -169,6 +171,26 @@ const MovieProvider = ({ children }) => {
         setIsLoading(false);
     }
 
+    const getRecommendationsSeriesAndSetSeries = async (page) => {
+        setIsLoading(true);
+        const data = await getMoviesOrSeries(endpointSerie, endpointPopularSeries, page);
+        setSeries(prevSeries => {
+            const newSeries = data.filter(serie => !prevSeries.some(prevSerie => prevSerie.id === serie.id));
+            return [...prevSeries, ...newSeries];
+        });
+        setIsLoading(false);
+    }
+
+    const getTopRatedSeriesAndSetSeries = async (page) => {
+        setIsLoading(true);
+        const data = await getMoviesOrSeries(endpointSerie, endpointRatedSeries, page);
+        setSeries(prevSeries => {
+            const newSeries = data.filter(serie => !prevSeries.some(prevSerie => prevSerie.id === serie.id));
+            return [...prevSeries, ...newSeries];
+        });
+        setIsLoading(false);
+    }
+
 
     const getMoviesByGenre = async (genreId, page) => {
         setIsLoading(true);
@@ -263,6 +285,8 @@ const MovieProvider = ({ children }) => {
             value={
                 { 
                     isLoading,
+                    isLoadingCard,
+                    setIsLoadingCard,
                     categoriesMovies,
                     categoriesSeries,
                     trendsMovies,
@@ -272,8 +296,9 @@ const MovieProvider = ({ children }) => {
                     misteryRecommendations,
                     getMisteryRecommendations,
                     recommendationsSeries,
-                    getRecommendationsSeries,
+                    getRecommendationsSeriesAndSetSeries,
                     seriesTopRated,
+                    getTopRatedSeriesAndSetSeries,
                     myList,
                     onAddTitleToMyList,
                     onDeleteTitleToMyList,

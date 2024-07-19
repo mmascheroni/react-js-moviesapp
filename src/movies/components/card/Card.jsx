@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import ButtonMylist from '../button/ButtonMylist';
 import { Link } from 'react-router-dom';
 import { useMyList } from '../../../hooks/useMyList';
+import { MovieContext } from '../../../context/MovieContext';
 
 
 const Card = (props) => {
@@ -12,9 +13,9 @@ const Card = (props) => {
 
 
     return (
-        <div className="relative rounded-lg overflow-hidden shadow-lg w-64 flex-shrink-0 transform transition-transform duration-300 hover:scale-105 group cursor-pointer box-shadow">
+        <div className="relative rounded-lg overflow-hidden shadow-lg w-64 flex-shrink-0 transform transition-transform duration-300 hover:scale-105 group cursor-pointer box-">
             <Link to={`/browse/${ id }`} state={props} >
-                <img className="w-full" src={src} alt={alt} />
+                <img className="w-full h-160" src={src} alt={alt} />
                 <div className="absolute inset-0 flex items-end justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <div className="flex flex-col bg-black bg-opacity-70 text-white text-center p-2 w-full">
                         {title}
@@ -44,7 +45,6 @@ const Card = (props) => {
                     
                 </div>
             </Link>
-            
         </div>
     );
 };

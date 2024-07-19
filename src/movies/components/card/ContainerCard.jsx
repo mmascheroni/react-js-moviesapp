@@ -5,7 +5,7 @@ import SpinnerLoader from '../spinnerLoader/SpinnerLoader';
 const ContainerCard = ({title, query, number, genreId, showBtn = true, children }) => {
 
 
-    const { isLoading, getMoviesByGenre, getTrendsMoviesAndSetMovies, getRecommendationsMoviesAndSetMovies, getSeriesByGenre, onSearchTitle } = useContext(MovieContext);
+    const { isLoading, getMoviesByGenre, getTrendsMoviesAndSetMovies, getRecommendationsMoviesAndSetMovies, getSeriesByGenre, onSearchTitle,  getTopRatedSeriesAndSetSeries, getRecommendationsSeriesAndSetSeries } = useContext(MovieContext);
 
     const [ page, setPage ] = useState(2);
 
@@ -31,7 +31,17 @@ const ContainerCard = ({title, query, number, genreId, showBtn = true, children 
             setPage(page + 1);
         }
 
+        if ( number == 5 ) {
+            getRecommendationsSeriesAndSetSeries(page);
+            setPage(page + 1);
+        }
+
         if ( number == 6 ) {
+            getTopRatedSeriesAndSetSeries(page);
+            setPage(page + 1);
+        }
+
+        if ( number == 8 ) {
             onSearchTitle(query, page);
             setPage(page + 1);
         }

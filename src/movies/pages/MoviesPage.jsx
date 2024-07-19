@@ -12,7 +12,6 @@ const MoviesPage = () => {
     const { genreId } = useParams();
 
 
-
     const { movies, setMovies, getMoviesByGenre, getTrendsMoviesAndSetMovies, getRecommendationsMoviesAndSetMovies } = useContext(MovieContext);
 
     const [ number, setNumber ] = useState(null);
@@ -49,7 +48,12 @@ const MoviesPage = () => {
                     <Card 
                         key={movie.id}  
                         id={movie.id} 
-                        src={`${BASE_URL_IMG}/${movie.backdrop_path}`} 
+                        src={
+                            movie.backdrop_path ?
+                            `${BASE_URL_IMG}/${movie.backdrop_path}`
+                            :
+                            '/assets/no-photo.jpg'
+                        }  
                         alt={ movie.original_title} 
                         title={ movie.original_title } 
                         {...movie}
