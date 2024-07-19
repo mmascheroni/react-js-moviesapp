@@ -1,15 +1,17 @@
+import { AuthProvider } from "./auth/context/AuthContext"
+import ErrorBoundary from "./exceptions/ErrorBoundary"
 import Footer from "./movies/components/footer/Footer"
-import NavBar from "./movies/components/navbar/NavBar"
 import AppRouter from "./router/AppRouter"
 
 function MoviesApp() {
 
   return (
-    <>
-      <NavBar />
+    <ErrorBoundary>
+      <AuthProvider>
       <AppRouter />
       <Footer/>
-    </>
+    </AuthProvider>
+    </ErrorBoundary>
   )
 }
 
