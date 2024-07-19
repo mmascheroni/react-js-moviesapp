@@ -15,7 +15,12 @@ const MyListPage = () => {
                     <Card 
                         key={movie.id}  
                         id={movie.id} 
-                        src={`${BASE_URL_IMG}/${movie.backdrop_path}`} 
+                        src={
+                            movie.backdrop_path ?
+                            `${BASE_URL_IMG}/${movie.backdrop_path}`
+                            :
+                            '/assets/no-photo.jpg'
+                        }  
                         alt={ movie.original_title} 
                         title={ movie.original_title } 
                         {...movie}
