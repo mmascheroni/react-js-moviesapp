@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useState } from 'react'
+import React, { createContext, useEffect, useReducer, useState } from 'react'
 import { authReducer } from './authReducer';
 import { types } from '../types/types';
 export const AuthContext = createContext();
@@ -23,9 +23,14 @@ export const AuthProvider = ({ children }) => {
 
     const [ isDesktop, setIsDesktop ] = useState(false);
 
+    const [ isTablet, setIsTablet ] = useState(false);
+
     const [ isMobile, setIsMobile ] = useState(false);
 
+
     const desktopMediaQuery = window.matchMedia('(min-width: 950px)');
+
+    const tabletMediaQuery = window.matchMedia('(max-width: 920px)');
 
     const mobileMediaQuery = window.matchMedia('(max-width: 523px)');
 
@@ -38,6 +43,15 @@ export const AuthProvider = ({ children }) => {
     });
 
 
+    tabletMediaQuery.addEventListener('change', (e) => {
+        if ( e.matches ) {
+            setIsTablet(true);
+        } else {
+            setIsTablet(false);
+        }
+    });
+
+
     mobileMediaQuery.addEventListener('change', (e) => {
         if ( e.matches ) {
             setIsMobile(true);
@@ -46,6 +60,20 @@ export const AuthProvider = ({ children }) => {
         }
     })
 
+    const updateMediaQueries = () => {
+        const desktopMediaQuery = window.matchMedia('(min-width: 950px)');
+        const tabletMediaQuery = window.matchMedia('(max-width: 920px)');
+        const mobileMediaQuery = window.matchMedia('(max-width: 523px)');
+
+        setIsDesktop(desktopMediaQuery.matches);
+        setIsTablet(tabletMediaQuery.matches && !mobileMediaQuery.matches);
+        setIsMobile(mobileMediaQuery.matches);
+    };
+
+    
+    useEffect(() => {
+        updateMediaQueries();
+    }, []);
 
     const login = ( name = '' ) => {
         const user = {
