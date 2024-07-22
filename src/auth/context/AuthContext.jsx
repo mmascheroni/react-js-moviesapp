@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react'
+import React, { createContext, useReducer, useState } from 'react'
 import { authReducer } from './authReducer';
 import { types } from '../types/types';
 export const AuthContext = createContext();
@@ -20,6 +20,32 @@ const init = () => {
 export const AuthProvider = ({ children }) => {
 
     const [ authState, dispatch ] = useReducer( authReducer, initialState, init );
+
+    const [ isDesktop, setIsDesktop ] = useState(false);
+
+    const [ isMobile, setIsMobile ] = useState(false);
+
+    const desktopMediaQuery = window.matchMedia('(min-width: 950px)');
+
+    const mobileMediaQuery = window.matchMedia('(max-width: 523px)');
+
+    desktopMediaQuery.addEventListener('change', (e) => {
+        if ( e.matches ) {
+            setIsDesktop(true);
+        } else {
+            setIsDesktop(false);
+        }
+    });
+
+
+    mobileMediaQuery.addEventListener('change', (e) => {
+        if ( e.matches ) {
+            setIsMobile(true);
+        } else {
+            setIsMobile(false);
+        }
+    })
+
 
     const login = ( name = '' ) => {
         const user = {
@@ -51,6 +77,8 @@ export const AuthProvider = ({ children }) => {
             ...authState,
             login: login,
             logout: logout,
+            isDesktop,
+            isMobile,
         }}>
             { children }
         </AuthContext.Provider >
