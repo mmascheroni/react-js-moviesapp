@@ -4,7 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 
 const LoginPage = () => {
 
-    const { login } = useContext( AuthContext );
+    const { login, isMobile } = useContext( AuthContext );
 
     const [ name, setName ] = useState('');
     const [ error, setError ] = useState(false);
@@ -36,11 +36,24 @@ const LoginPage = () => {
 
     return (
         <>
-            <h1 className='mt-8 mb-8 text-center text-white font-extrabold text-5xl'>MoviesApp</h1>
+            <h1 className={`mt-8 mb-8 text-center text-white font-extrabold ${
+                
+                    !isMobile ?
+                    'text-5xl'
+                    :
+                    'text-3xl'
+                }
+                `
+            }
+            >MoviesApp</h1>
 
             <hr/>
 
-            <div className="mt-8 text-center text-white h-450">
+            <div className={
+                `mt-8 text-center text-white h-450 ${
+                    isMobile && 'p-5'
+                }`
+                }>
                 <h3 className='font-bold text-lg mb-8'>Por favor, introduzca su nombre para acceder a MoviesApp</h3>
                 <form className='flex flex-col flex-wrap items-center gap-8' onSubmit={ e => onLogin(e) }>
                     <div className="flex flex-wrap justify-center items-center gap-2">

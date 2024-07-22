@@ -9,6 +9,8 @@ const NavBar = memo(() => {
 
     const { categoriesMovies, categoriesSeries } = useContext(MovieContext);
 
+    const { isMobile, isDesktop } = useContext(AuthContext);
+
     const { user, logout } = useContext( AuthContext );
 
     const navigate = useNavigate();

@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ButtonMylist from '../button/ButtonMylist';
 import { Link } from 'react-router-dom';
 import { useMyList } from '../../../hooks/useMyList';
+import { AuthContext } from '../../../auth/context/AuthContext';
 
 
 const Card = (props) => {
+
+    const { isMobile } = useContext(AuthContext);
 
     const { src, alt, title, id } = props;
 
@@ -12,7 +15,11 @@ const Card = (props) => {
 
 
     return (
-        <div className="relative rounded-lg overflow-hidden shadow-lg w-64 flex-shrink-0 transform transition-transform duration-300 hover:scale-105 group cursor-pointer box-">
+        <div className=
+                {
+                    `relative rounded-lg overflow-hidden shadow-lg flex-shrink-0 transform transition-transform duration-300 hover:scale-105 group cursor-pointer w-64`
+                }
+            >
             <Link to={`/browse/${ id }`} state={props} >
                 <img className="w-full h-160" src={src} alt={alt} />
                 <div className="absolute inset-0 flex items-end justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">

@@ -112,9 +112,41 @@ button {
     border-color: #000 transparent transparent transparent;
 }
 
+.menu-left::before {
+    visibility: hidden;
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 97%;
+    transform: translateY(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #000 transparent transparent;
+}
+
 .group:hover .menu::before {
     visibility: visible;
     opacity: 1;
+}
+
+.group-series:hover .menu-left::before {
+    visibility: visible;
+    z-index: 1;
+    opacity: 1;
+}
+
+.group-movies:hover .menu-left::before {
+    visibility: visible;
+    z-index: 1;
+    opacity: 1;
+}
+
+.group-series:hover .group-series-hover {
+    display: block;
+}
+
+.group-movies:hover .group-movies-hover {
+    display: block;
 }
 
 .scrollbar {

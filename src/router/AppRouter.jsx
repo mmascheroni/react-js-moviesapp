@@ -5,6 +5,7 @@ import PublicRoute from './PublicRoute'
 import PrivateRoute from './PrivateRoute'
 import LoginPage from '../auth/pages/LoginPage'
 import NavBar from '../movies/components/navbar/NavBar'
+import NavBarResponsive from '../movies/components/navbar/NavBarResponsive'
 
 const AppRouter = () => {
     return (
@@ -16,7 +17,8 @@ const AppRouter = () => {
             } />
             <Route path='/*' element={ 
                 <PrivateRoute>
-                    <NavBar />
+                    {/* <NavBar /> */}
+                    <NavBarResponsive />
                     <MoviesRoutes />
                 </PrivateRoute>
             } />

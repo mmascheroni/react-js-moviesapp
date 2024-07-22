@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import Card from './Card';
 import { Link } from 'react-router-dom';
 
@@ -61,11 +61,10 @@ const GridCard = ({ movies = [], title = '', linkTo = '/', genreId, type, titleP
                                 key={movie.id} 
                                 id={movie.id} 
                                 src={
-                                        movie.backdrop_path ?
-                                        `${BASE_URL_IMG}/${movie.backdrop_path}`
-                                        :
-                                        '/assets/no-photo.jpg'
-                                    }  
+                                    movie.backdrop_path 
+                                        ? `${BASE_URL_IMG}/${movie.backdrop_path}`
+                                        : '/assets/no-photo.jpg'
+                                }
                             alt={ movie.original_title} title={ movie.original_title } {...movie} />
                         ))}
                     </div>
