@@ -32,7 +32,7 @@ Se trabajó manteniendo una estructura de carpetas organizadas para mantener la 
     -   **router:** Se realizan las configuraciones necesarias para el manejo público y privado de rutas, y se realiza la configuración de ruteos de la misma. quedando como **LoginPage** la única ruta pública, y luego las rutas que se encuentran en **_movies_** privadas, lo que quiere decir que es necesario que el usuario se encuentre logueado.
 
 <p align="center">
-  <img src="estructura-carpetas.png" alt="Estructuras de Carpeta">
+  <img src="./images/estructura-carpetas.png" alt="Estructuras de Carpeta">
 </p>
 
 ## Tecnologías Utilizadas
@@ -51,46 +51,46 @@ Para el ruteo de páginas se utilizó **_react-router-dom_**, además se manejan
 
     -   Desktop:
 
-    ![desktop-login](login-desktop.png)
+    ![desktop-login](./images/login-desktop.png)
 
     -   Mobile:
 
-    ![mobile-login](login-mobile.png)
+    ![mobile-login](./images/login-mobile.png)
 
 -   ### Home Page
 
     -   Desktop:
 
-    ![home-desktop](home-desktop.png)
+    ![home-desktop](./images/home-desktop.png)
 
     -   Mobile:
 
-    ![mobile-home](home-mobile.png)
-    ![menu-mobile](menu-mobile.png)
+    ![mobile-home](./images/home-mobile.png)
+    ![menu-mobile](./images/menu-mobile.png)
 
 -   ### Title Page
 
     -   Desktop:
 
-    ![titlePage-desktop](titlePage-desktop.png)
+    ![titlePage-desktop](./images/titlePage-desktop.png)
 
     -   Mobile:
 
-    ![title-mobile](titlePage-mobile.png)
+    ![title-mobile](./images/titlePage-mobile.png)
 
 -   ### Search Page
 
     -   Desktop:
 
-    ![search-desktop](search-desktop.png)
+    ![search-desktop](./images/search-desktop.png)
 
     -   Mobile:
 
-    ![search-mobile](search-mobile.png)
+    ![search-mobile](./images/search-mobile.png)
 
     -   Spinner de carga:
 
-    ![spinner](spinner-carga.png)
+    ![spinner](./images/spinner-carga.png)
 
 ## Features
 
