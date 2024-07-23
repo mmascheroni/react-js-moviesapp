@@ -66,7 +66,7 @@ export const AuthProvider = ({ children }) => {
         const mobileMediaQuery = window.matchMedia('(max-width: 523px)');
 
         setIsDesktop(desktopMediaQuery.matches);
-        setIsTablet(tabletMediaQuery.matches && !mobileMediaQuery.matches);
+        setIsTablet(tabletMediaQuery.matches);
         setIsMobile(mobileMediaQuery.matches);
     };
 
@@ -107,6 +107,7 @@ export const AuthProvider = ({ children }) => {
             logout: logout,
             isDesktop,
             isMobile,
+            isTablet
         }}>
             { children }
         </AuthContext.Provider >

@@ -329,7 +329,6 @@ const MovieProvider = ({ children }) => {
                     search,
                     setSearch,
                     inputValue,
-                    setSearch,
                     setInputValue,
                     handleChangeInput,
                     onSearchTitle,
